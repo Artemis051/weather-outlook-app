@@ -40,15 +40,17 @@ function getWeather(cityName, cardIndex) {
             const temperatureInFahrenheit = Math.round((temperatureInKelvin - 273.15) * 9/5 + 32);
 
 
-            temperatureElement.textContent = `${temperatureInFahrenheit.toFixed(2)}°F`;
+            temperatureElement.textContent = `${temperatureInFahrenheit.toFixed(0)}°F`;
             humidityElement.textContent = `${forecastData.main.humidity}%`;
             windElement.textContent = `${forecastData.wind.speed} m/s`;
             dayElement.textContent = getDayOfWeek(new Date(forecastData.dt * 1000).getDay());
             cityElement.textContent = cityName;
-
+        
             const weatherIcon = forecastData.weather[0].icon;
+            console.log("Weather Icon Code:", weatherIcon);
             const iconPath = getIconPath(weatherIcon);
-            iconElement.src = iconPath;  
+            iconElement.src = iconPath;
+            // iconElement.alt = forecastData.weather[0].description; // Set alt attribute for accessibility
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -58,7 +60,7 @@ function getWeather(cityName, cardIndex) {
 function getIconPath(iconCode) {
     // Map the icon code to the corresponding image file
     const iconMap = {
-        '01d': 'assets/images/clear.png',
+        '01d': 'assets/Screenshot 2023-11-11 at 1.10.25 AM.png',
         '02d': 'assets/images/clouds.png',
         '03d': 'assets/images/clouds.png',
         '04d': 'assets/images/clouds.png',

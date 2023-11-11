@@ -6,6 +6,11 @@
     box-sizing:border-box;
 
 }
+
+header{
+    margin-top: -600px;
+    text-align: center;
+}
 body{
     background-color: azure;
     display: flex;
