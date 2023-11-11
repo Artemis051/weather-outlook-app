@@ -93,8 +93,16 @@ body{
     height:100px;
 }
 .icon {
-    width:30px;
-    height: 30px;
+    width:35px;
+    height: 35px;
+}
+
+#wind-icon {
+    margin-right: -50px;
+}
+
+#humidity-icon{
+    margin-left:-50px;
 }
 
 .details{
@@ -109,6 +117,22 @@ body{
     text-align: center;
     margin-top: 25px;
     margin-left: -85px;
+}
+
+.wind{
+    margin-right: -50px;
+}
+
+.humidity{
+    margin-left: -50px;
+}
+
+.wind-text{
+    margin-right:-40px;
+}
+
+.humidity-text{
+    margin-left:-40px;
 }
 
 /* body {
