@@ -40,8 +40,8 @@ body{
     /* width:35%; */
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    justify-content: center;
+    margin-bottom: 80px;
    
 }
 
@@ -89,6 +89,33 @@ body{
 .enter-city{
     margin-left: -100px;
 }
+
+.searchHistory {
+    display: flex;
+    align-items: center;
+}
+
+.searchHistory  {
+    list-style: none;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background: linear-gradient(150deg, #95eecb, #4a9ecb);
+    color: #fff;
+    justify-content: space-between;
+}
+
+/* .searchHistory{
+    width: 700px;
+    height:100px;
+    background: linear-gradient(150deg, #95eecb, #80c2df);
+    color: #fff;
+    margin: 100px auto 0;
+    border-radius: 10px;
+    padding:20px;
+    text-align:center; 
+    margin-top:-650px;
+} */
 .weather{
     margin: 50px;
 }

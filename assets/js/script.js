@@ -1,5 +1,71 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+    if (!isLocalStorageAvailable()) {
+        console.error('LocalStorage is not available.');
+        return;
+    }
+
+    const searchButton = document.getElementById('searchButton');
+    searchButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        const cityInput = document.getElementById('cityInput').value;
+        for (let i = 0; i < 5; i++) {
+            getWeather(cityInput, i);
+        }
+        addToSearchHistory(cityInput);
+    });
+    loadSearchHistory();
+
+    for (let i = 0; i < 5; i++) {
+        getWeather("Chicago", i);
+    }
+});
+
+function isLocalStorageAvailable() {
+    try {
+        const testKey = 'test';
+        localStorage.setItem(testKey, testKey);
+        localStorage.removeItem(testKey);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+function addToSearchHistory(city) {
+    const history = getSearchHistory();
+
+   
+    history.push(city);
+     const limitedHistory = history.slice(-5);
+
+    localStorage.setItem('searchHistory', JSON.stringify(limitedHistory));
+
+  
+    displaySearchHistory();
+}
+
+function getSearchHistory() {
+    return JSON.parse(localStorage.getItem('searchHistory')) || [];
+}
+
+function loadSearchHistory() {
+    const history = getSearchHistory();
+    const historyList = document.getElementById('historyList');
+
+    historyList.innerHTML = "";
+
+    history.forEach(city => {
+        const listItem = document.createElement('li');
+        listItem.textContent = city;
+        historyList.appendChild(listItem);
+    });
+}
+
+function displaySearchHistory() {
+    loadSearchHistory();
+}
+document.addEventListener('DOMContentLoaded', function() {
     const searchButton = document.getElementById('searchButton');
     searchButton.addEventListener('click', function(event) {
         event.preventDefault();
@@ -50,7 +116,7 @@ function getWeather(cityName, cardIndex) {
             console.log("Weather Icon Code:", weatherIcon);
             const iconPath = getIconPath(weatherIcon);
             iconElement.src = iconPath;
-            // iconElement.alt = forecastData.weather[0].description; // Set alt attribute for accessibility
+            // iconElement.alt = forecastData.weather[0].description; /
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -58,9 +124,9 @@ function getWeather(cityName, cardIndex) {
 }
 
 function getIconPath(iconCode) {
-    // Map the icon code to the corresponding image file
+    
     const iconMap = {
-        '01d': 'assets/Screenshot 2023-11-11 at 1.10.25 AM.png',
+        '01d': 'assets/images/clear.png',
         '02d': 'assets/images/clouds.png',
         '03d': 'assets/images/clouds.png',
         '04d': 'assets/images/clouds.png',
@@ -90,7 +156,6 @@ for (let i = 0; i < 5; i++) {
 }
 });
 
-// Call getWeather with "Chicago" initially to load data for Chicago
 for (let i = 0; i < 5; i++) {
 getWeather("Chicago", i);
 }
